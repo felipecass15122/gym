@@ -209,12 +209,10 @@ Os participantes deverão realizar as seguintes tarefas, em sequência, sem rece
 - **Local:** Presencial (sala da universidade ou ambiente controlado) ou remoto (Google Meet com compartilhamento de tela)
 - **Equipamentos necessários:**
   - Smartphone Android com o GYM GAIN instalado
-  - Computador/notebook para observação e anotações
-  - Gravação de tela (com consentimento) — ex.: app AZ Screen Recorder
+  - Celular ou caderno para as anotações
   - Formulário SUS impresso ou digital (Google Forms)
 - **Moderador:** 1 membro da equipe conduz a sessão
-- **Observador:** 1 membro da equipe anota comportamentos e dificuldades
-- **Duração por sessão:** 30–45 minutos (tarefas + SUS + entrevista pós-teste breve)
+- **Duração por sessão:** Janela de treino do participante
 
 #### Questionário SUS (System Usability Scale)
 O SUS é composto por 10 afirmações com escala Likert de 1 a 5. A pontuação final varia de 0 a 100. Pontuações acima de 68 são consideradas acima da média.
@@ -240,7 +238,7 @@ O SUS é composto por 10 afirmações com escala Likert de 1 a 5. A pontuação 
 
 #### Custos previstos
 - Deslocamento dos participantes: zero (aplicação presencial na universidade ou remota)
-- Reserva de sala: sala disponível na instituição (sem custo)
+- Treino em academia: não previsto (aplicação em academia onde participante esta matriculado)
 - Incentivo aos participantes: não previsto (participação voluntária)
 - **Custo total estimado: R$ 0,00**
 
