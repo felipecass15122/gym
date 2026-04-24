@@ -19,6 +19,83 @@ O **GYM GAIN** é um aplicativo mobile para Android desenvolvido para auxiliar p
 
 ---
 
+## Contexto Avaliativo Enriquecido
+
+### 2.1 — Estado Atual de Usabilidade
+
+Com base na inspeção direta do aplicativo antes da avaliação formal, foram identificadas as seguintes características que orientam as hipóteses e os critérios de avaliação:
+
+- **Ausência de onboarding e ajuda contextual:** O app não possui tela de boas-vindas, tutoriais ou tooltips. A única exceção é um `tipBox` na tela de adição de exercícios que exemplifica o formato do campo "Protocolo/Séries". Todos os demais módulos carecem de texto explicativo.
+- **Terminologia especializada sem legenda:** A coluna "TIPO" nos cards de exercício exibe rótulos como "Feeder", "Top Set", "Working" e "Back-off", derivados do protocolo cadastrado. Esses termos são convenções do universo do treinamento de força e não possuem qualquer legenda ou explicação na interface.
+- **Ação destrutiva de baixa visibilidade:** O botão "Limpar Mês Atual" está aninhado dois níveis abaixo do calendário principal (acesso via modal de dia → submenu do Gerador de Ciclo), tornando-o difícil de encontrar mas também difícil de acionar acidentalmente.
+- **Métricas sem contextualização:** O label "1RM Est." (Estimativa de 1 Rep Max) é exibido como título de seção no painel de Progresso sem indicar a fórmula utilizada (Epley: `carga × (1 + reps / 30)`) nem o que o valor representa para usuários não familiarizados com o conceito.
+- **Navegação de peso visual uniforme:** A barra de navegação inferior apresenta as três abas (TREINOS, CALENDÁRIO, PROGRESSO) com mesmo destaque visual, sem indicação de hierarquia ou fluxo recomendado de uso.
+
+---
+
+### 2.2 — Dimensões de Usabilidade de Nielsen Mapeadas aos Módulos
+
+| Dimensão | Módulo Treinos | Módulo Calendário | Módulo Progresso |
+|---|---|---|---|
+| **Aprendizagem** | Campo "Protocolo/Séries" exige formato textual com barra (`2 Feeder \| 1 Top Set`) — convenção interna não padronizada, sem modelo visual além do `tipBox` | Gerador de Ciclo é acessado somente via modal de dia — função não visível no nível superior do módulo | Cálculo de 1RM não explicado; "Ranking de Força" não possui legenda ou escala de referência |
+| **Eficiência** | Registro KG/REPS em linha por série é eficiente; botões de + e − estão próximos do campo | Atribuição de treino a um dia requer 2 toques (selecionar dia → escolher tipo) | Abas "Cargas" e "Peso Corporal" claramente separadas; botão de sincronização wearable disponível |
+| **Memorabilidade** | Siglas FS/WS em protocolos pré-cadastrados vs. linguagem livre em novos exercícios gera inconsistência no rótulo "TIPO" | Ciclo de 12 dias: o dia de início do ciclo depende de qual célula foi clicada — lógica não memorável sem uso frequente | Ranking persiste entre sessões, mas não indica a data do último registro de cada exercício |
+| **Erros** | Botão Trash (excluir exercício) na barra flutuante, ao lado de "Baixar Planilha", sem confirmação via `Alert` | "Limpar Mês Atual" possui `Alert.alert` de confirmação implementado; "Remover Marcação do Dia" não possui | Exclusão de registro de peso por `onLongPress` — padrão de interação não sinalizado na interface |
+| **Satisfação** | Tema escuro com paleta laranja/azul; layout em tabela coerente com os dados; ícone `X` para remover sem confirmação | Células do calendário coloridas por tipo de treino — boa sinalização do estado mensal | Gráfico de linha com curva bezier; integração Galaxy Fit 3 representa diferencial de valor percebido |
+
+---
+
+### 2.3 — Hipóteses de Usabilidade
+
+As hipóteses a seguir são testáveis pelos métodos definidos e rastreáveis a comportamentos observados no app:
+
+**H1 — Aprendizagem / Campo de Protocolo:**
+A maioria dos participantes não conseguirá preencher corretamente o campo "Protocolo/Séries" ao adicionar um exercício novo sem ler o `tipBox`, pois o formato `"2 Feeder | 1 Top Set"` é uma convenção interna sem equivalente em outros apps de treino.
+
+**H2 — Aprendizagem / Gerador de Ciclo:**
+O Gerador de Ciclo terá baixa taxa de descoberta espontânea na primeira sessão, pois o acesso à função só é possível após tocar em um dia do calendário — a funcionalidade não está visível no nível superior do módulo.
+
+**H3 — Erros / Ação Destrutiva no Módulo Treinos:**
+O botão flutuante de exclusão (Trash) no módulo Treinos causará hesitação ou cliques acidentais, pois está posicionado adjacente ao botão "Baixar Planilha" sem separação visual adequada e sem `Alert.alert` de confirmação (diferente do "Limpar Mês" que possui confirmação implementada).
+
+**H4 — Terminologia / 1RM Estimado:**
+Participantes com menos de 1 ano de experiência em musculação não compreenderão o significado de "1RM Est." nem saberão interpretar os valores exibidos no Ranking de Força sem explicação externa.
+
+**H5 — Memorabilidade / Classificação de Séries:**
+A variação entre protocolos pré-cadastrados (que exibem "FS"/"WS" na coluna TIPO) e protocolos criados pelo usuário (que exibem texto livre) gerará inconsistência visual que reduz a memorabilidade e a confiança no sistema de classificação.
+
+**H6 — Satisfação / Integração Wearable:**
+A integração com o Galaxy Fit 3 gerará expectativa positiva, mas potencial frustração caso o botão "Sincronizar" não retorne dados imediatamente — o estado de carregamento (`isSyncing`) não informa o motivo de falha nem oferece alternativa manual de entrada.
+
+---
+
+### 2.4 — Critérios de Sucesso e Falha por Dimensão
+
+| Dimensão | Indicador | Critério de Sucesso | Critério de Falha |
+|---|---|---|---|
+| Aprendizagem | % de participantes que completam T3 (adicionar exercício) sem ajuda | ≥ 80% completam sem auxílio | < 60% completam sem auxílio |
+| Aprendizagem | Taxa de descoberta espontânea do Gerador de Ciclo (T6) | ≥ 3 de 5 participantes encontram sem dica | ≤ 1 de 5 encontra sem dica |
+| Eficiência | Tempo médio para completar T2 (registrar carga de 15 kg) | ≤ 45 segundos | > 90 segundos |
+| Erros | Nº de cliques acidentais no Trash ou "Limpar Mês" | 0 cliques não-intencionais | ≥ 2 participantes clicam acidentalmente |
+| Satisfação | Score SUS médio do grupo | ≥ 68 — acima da média (Bangor et al., 2009) | < 51 — inaceitável |
+| Satisfação | Resposta à P12 (intenção de uso contínuo) | ≥ 4 de 5 participantes respondem positivamente | ≤ 2 de 5 respondem positivamente |
+| Heurísticas | Nº de problemas com severidade 3 ou 4 identificados | ≤ 3 problemas graves | ≥ 6 problemas graves |
+
+---
+
+### 2.5 — Contexto de Uso do Usuário-Alvo
+
+O GYM GAIN é projetado para uso **dentro ou imediatamente após séries de musculação**. Este contexto impõe restrições específicas que a avaliação deve considerar:
+
+- **Ambiente físico:** academias de musculação apresentam alto nível de ruído (música, equipamentos), iluminação variável e superfícies sem apoio adequado para o celular. Usuários podem estar com mãos suadas ou usando luvas de treino, reduzindo a precisão em alvos de toque pequenos.
+- **Estado físico do usuário:** durante o treino, o usuário opera sob fadiga muscular progressiva e elevação da frequência cardíaca. A coordenação motora fina é reduzida, tornando campos numéricos pequenos (KG, REPS) mais suscetíveis a erros de entrada.
+- **Pressão de tempo:** o intervalo entre séries típico varia de 60 a 120 segundos. Qualquer fluxo de registro que exija mais de 2–3 toques representa um custo de usabilidade relevante neste contexto.
+- **Postura de uso:** o app é frequentemente operado com uma mão enquanto a outra segura equipamento ou repousa. Elementos interativos posicionados nas bordas superiores da tela são mais difíceis de alcançar com o polegar.
+- **Conectividade:** academias podem ter sinal instável. A sincronização em tempo real com o Firebase pode apresentar latência perceptível, gerando incerteza sobre o estado de salvamento dos dados.
+- **Carga cognitiva:** o usuário está com atenção dividida entre o treino e o registro. Termos ambíguos, fluxos de múltiplos passos ou feedbacks de sistema pouco claros aumentam significativamente a probabilidade de erro ou abandono da tarefa.
+
+---
+
 ## Framework DECIDE
 
 ```
@@ -194,9 +271,15 @@ Planilha de registro de problemas heurísticos com os campos:
 
 Os participantes deverão realizar as seguintes tarefas, em sequência, sem receber instruções além do enunciado:
 
-| # | Tarefa | Objetivo avaliado |
+| # | Tarefa | Objetivo avaliado | -- 
+
+#### Editar o direcionamento do usuario sem dar o caminho, apenas o objetivo. 
+#### Adicionar horario inicial e final de execução de uma tarefa. 
+#### Adicionar um registro para a quantidade de erros.
+#### Dentro dos formulario guiado de avaliação.
+
 |---|---|---|
-| T1 | "Navegue até a aba de Treinos e identifique qual treino está selecionado atualmente." | Orientação/navegação (P1, P6) |
+| T1 | "Identifique qual treino está selecionado atualmente." | Orientação/navegação (P1, P6) |
 | T2 | "Registre uma carga de 15 kg para o primeiro exercício do treino A1." | Registro de dados (P1, P3) |
 | T3 | "Adicione um novo exercício ao treino A1." | Fluxo de adição (P2) |
 | T4 | "Explique o que significa 'x3-5 (FS)' e 'x8-12 (WS)' na lista de exercícios." | Terminologia (P4) |
@@ -337,7 +420,6 @@ O SUS é composto por 10 afirmações com escala Likert de 1 a 5. A pontuação 
 - Prints anotados das telas com os principais problemas identificados
 - Lista priorizada de problemas com propostas de solução
 
----
 
 ### Análise Crítica da Avaliação
 
