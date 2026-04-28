@@ -271,22 +271,32 @@ Planilha de registro de problemas heurísticos com os campos:
 
 Os participantes deverão realizar as seguintes tarefas, em sequência, sem receber instruções além do enunciado:
 
-| # | Tarefa | Objetivo avaliado | -- 
-
-#### Editar o direcionamento do usuario sem dar o caminho, apenas o objetivo. 
-#### Adicionar horario inicial e final de execução de uma tarefa. 
-#### Adicionar um registro para a quantidade de erros.
-#### Dentro dos formulario guiado de avaliação.
-
+| # | Tarefa | Objetivo avaliado |
 |---|---|---|
 | T1 | "Identifique qual treino está selecionado atualmente." | Orientação/navegação (P1, P6) |
 | T2 | "Registre uma carga de 15 kg para o primeiro exercício do treino A1." | Registro de dados (P1, P3) |
 | T3 | "Adicione um novo exercício ao treino A1." | Fluxo de adição (P2) |
-| T4 | "Explique o que significa 'x3-5 (FS)' e 'x8-12 (WS)' na lista de exercícios." | Terminologia (P4) |
-| T5 | "Vá ao Calendário e atribua o treino B1 ao dia 15 de abril." | Calendário (P7) |
-| T6 | "Use o Gerador de Ciclo para preencher o mês de abril." | Gerador de Ciclo (P8) |
+| T4 | "O que significam os termos 'x3-5 (FS)' e 'x8-12 (WS)' que aparecem no aplicativo?" | Terminologia (P4) |
+| T5 | "Atribua o treino B1 ao dia 15 de abril." | Calendário (P7) |
+| T6 | "Preencha o mês de abril com os treinos programados." | Gerador de Ciclo (P8) |
 | T7 | "Encontre qual é a sua maior carga registrada no app." | Progresso (P5) |
 | T8 | "Registre seu peso corporal de hoje como 75 kg." | Peso Corporal (P3) |
+
+#### Formulário de Observação por Tarefa
+
+Para cada tarefa executada, o moderador preenche um registro com os campos abaixo. Este formulário deve constar no documento de avaliação (formulário de avaliação .docx).
+
+| Campo | Tipo | Descrição |
+|---|---|---|
+| Participante | ID (P1–P5) | Identificação do participante |
+| Tarefa | ID (T1–T8) | Número da tarefa executada |
+| Horário de início | HH:MM:SS | Momento em que a tarefa foi iniciada |
+| Horário de término | HH:MM:SS | Momento em que a tarefa foi concluída ou abandonada |
+| Duração | Calculado | Tempo total de execução (término − início) |
+| Quantidade de erros | Inteiro | Número de erros observados durante a execução |
+| Tarefa concluída | Sim / Não | Indica se o participante completou a tarefa |
+| Precisou de ajuda | Sim / Não | Indica se o participante solicitou ou recebeu auxílio |
+| Observações | Texto livre | Verbalizações relevantes, hesitações, comportamentos notáveis |
 
 #### Condução das sessões
 - **Local:** Presencial (sala da universidade ou ambiente controlado) ou remoto (Google Meet com compartilhamento de tela)
