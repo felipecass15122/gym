@@ -274,8 +274,8 @@ Os participantes deverão realizar as seguintes tarefas, em sequência, sem rece
 | # | Tarefa | Objetivo avaliado |
 |---|---|---|
 | T1 | "Identifique qual treino está selecionado atualmente." | Orientação/navegação (P1, P6) |
-| T2 | "Registre uma carga de 15 kg para o primeiro exercício do treino A1." | Registro de dados (P1, P3) |
-| T3 | "Adicione um novo exercício ao treino A1." | Fluxo de adição (P2) |
+| T2 | "Registre sua carga para o primeiro exercício do treino." | Registro de dados (P1, P3) |
+| T3 | "Adicione um novo exercício ao treino" | Fluxo de adição (P2) |
 | T4 | "O que significam os termos 'x3-5 (FS)' e 'x8-12 (WS)' que aparecem no aplicativo?" | Terminologia (P4) |
 | T5 | "Atribua o treino B1 ao dia 15 de abril." | Calendário (P7) |
 | T6 | "Preencha o mês de abril com os treinos programados." | Gerador de Ciclo (P8) |
